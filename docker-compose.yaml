@@ -1,0 +1,10 @@
+services:
+
+ database:
+  image: mcr.microsoft.com/mssql/server:2022-latest
+  container_name: mssql-server
+  environment:
+    ACCEPT_EULA: "Y"
+    MSSQL_SA_PASSWORD: "Un!q@to2023"
+  networks:
+    - VEROnet
