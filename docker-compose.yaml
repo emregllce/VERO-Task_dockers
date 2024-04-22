@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  app:
+  php:
     build: .
     container_name: app
     ports:
@@ -19,8 +19,11 @@ services:
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "Un!q@to2023"
-#     networks:
-#       - VEROnet
+      MSSQL_PID: "Developer"
+      MSSQL_DB_NAME: "db_vero_digital"
+      MSSQL_HOST: "localhost"
+    # networks:
+    #   - VEROnet
 
 # networks:
 #   VEROnet:
