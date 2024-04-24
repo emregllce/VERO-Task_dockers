@@ -8,8 +8,7 @@ services:
       - "80:80"
     depends_on:
       - db_vero_digital
-    # networks:
-    #   - VEROnet
+    
 
   db_vero_digital:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -17,17 +16,10 @@ services:
       - "1433:1433"
     container_name: mssql-server
     environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "Un!q@to2023"
-      MSSQL_PID: "Developer"
-      MSSQL_DB_NAME: "db_vero_digital"
-      MSSQL_HOST: "localhost"
-    # networks:
-    #   - VEROnet
-
-# networks:
-#   VEROnet:
-
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Un!q@to2023
+      - APACHE_SERVER_NAME=localhost
+      
 
 
 
