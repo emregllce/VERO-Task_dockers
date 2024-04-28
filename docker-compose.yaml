@@ -2,12 +2,14 @@ version: '3.8'
 
 services:
   php:
-    build: .
+    build: ./php
     container_name: app
     ports:
       - "80:80"
     depends_on:
       - db_vero_digital
+    restart: always
+    
     
 
   db_vero_digital:
@@ -18,8 +20,12 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=Un!q@to2023
-      - APACHE_SERVER_NAME=localhost
-      
+      # - APACHE_SERVER_NAME=localhost
+    volumes:
+      - mssql-srv:/var/opt/mssql
+# Define the volume
+volumes:
+  mssql-srv:
 
 
 

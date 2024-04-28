@@ -13,6 +13,7 @@ final class QuickDbTest
             $dsn = "sqlsrv:server=".self::host.";Database=".self::db;
             $connection = new PDO($dsn, self::user, self::pass);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo 'connection complete';
 
         }
         catch(PDOException $e)
