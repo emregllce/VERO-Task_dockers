@@ -2,7 +2,6 @@ FROM php:8.1-apache
 
 RUN apt-get update && apt-get install -y gnupg2
 
-USER root
 
 # Install Microsoft SQL Server
 
@@ -23,3 +22,4 @@ RUN pecl install sqlsrv pdo_sqlsrv
 RUN docker-php-ext-enable sqlsrv pdo_sqlsrv
 # Copy your PHP application files
 COPY ./app /var/www/html/
+WORKDIR /var/www/html

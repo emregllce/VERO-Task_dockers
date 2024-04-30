@@ -9,6 +9,8 @@ services:
     depends_on:
       - db_vero_digital
     restart: always
+    networks:
+      - Vero
     
     
 
@@ -20,13 +22,12 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=Un!q@to2023
+    networks:
+      - Vero
       # - APACHE_SERVER_NAME=localhost
-    volumes:
-      - mssql-srv:/var/opt/mssql
-# Define the volume
-volumes:
-  mssql-srv:
-
+    
+networks:
+  Vero:
 
 
 
