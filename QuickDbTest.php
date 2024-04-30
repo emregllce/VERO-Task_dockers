@@ -10,8 +10,7 @@ final class QuickDbTest
 
     private function connectToDatabase() {
         try {
-            // $dsn = "sqlsrv:server=".self::host.";Database=".self::db;
-            // Since the database did not exist, I deleted the database name in the connector query and added TrustServerCertificate=true to fix the TLS error
+            $dsn = "sqlsrv:server=".self::host.";Database=".self::db;
             $dsn = "sqlsrv:server=".self::host.";TrustServerCertificate=true";
             $connection = new PDO($dsn, self::user, self::pass);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
