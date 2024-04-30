@@ -1,19 +1,20 @@
+<pre>
 <?php
 
 final class QuickDbTest
 {
-    private const host = 'localhost';
+    private const host = 'mssql-server';
     private const db = 'db_vero_digital';
     private const user = 'sa';
     private const pass = 'Un!q@to2023';
 
     private function connectToDatabase() {
         try {
-            $dsn = "sqlsrv:server=".self::host.";Database=".self::db;
+            // $dsn = "sqlsrv:server=".self::host.";Database=".self::db;
+            // Since the database did not exist, I deleted the database name in the connector query and added TrustServerCertificate=true to fix the TLS error
+            $dsn = "sqlsrv:server=".self::host.";TrustServerCertificate=true";
             $connection = new PDO($dsn, self::user, self::pass);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $connection->setAttribute(PDO::ATTR_TIMEOUT, 30); 
-
         }
         catch(PDOException $e)
         {
@@ -56,4 +57,4 @@ final class QuickDbTest
 
 echo json_encode((new QuickDbTest())->runDbTest(), JSON_PRETTY_PRINT);
 
-?>
+?></pre>

@@ -1,33 +1,24 @@
 version: '3.8'
-
 services:
-  php:
-    build: ./php
-    container_name: app
+  mssql-server:
+    build:
+      context: .
+      dockerfile: mssql.dockerfile
+    # ports:
+    # - "1433:1433"
+    networks:
+      - my-network
+
+  web-server:
+    build:
+      context: .
+      dockerfile: webserver.dockerfile
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
-      - db_vero_digital
-    restart: always
+      - mssql-server
     networks:
-      - Vero
-    
-    
+      - my-network
 
-  db_vero_digital:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    ports:
-      - "1433:1433"
-    container_name: mssql-server
-    environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=Un!q@to2023
-    networks:
-      - Vero
-      # - APACHE_SERVER_NAME=localhost
-    
 networks:
-  Vero:
-
-
-
+  my-network:
